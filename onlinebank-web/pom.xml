@@ -29,6 +29,11 @@
 			<artifactId>onlinebank-ui</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.app</groupId>
+			<artifactId>onlinebank-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
