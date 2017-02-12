@@ -3,8 +3,8 @@ package com.app.service;
 import java.util.List;
 import java.util.Set;
 
-import com.app.onlinebank.domain.User;
-import com.app.onlinebank.domain.role.UserRole;
+import com.app.domain.User;
+import com.app.domain.role.UserRole;
 
 public interface UserService {
 
@@ -22,7 +22,7 @@ public interface UserService {
 	
 	User getNewUser();
 	
-	User createUser(User user, Set<UserRole> userRoles);
+	void createUser(User user);
 	
 	User saveUser(User user);
 	

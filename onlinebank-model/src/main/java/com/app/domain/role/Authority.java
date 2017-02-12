@@ -1,4 +1,4 @@
-package com.app.security;
+package com.app.domain.role;
 
 import org.springframework.security.core.GrantedAuthority;
 

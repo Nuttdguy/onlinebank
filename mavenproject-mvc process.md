@@ -79,7 +79,7 @@ Creating Maven Project:
 12) create domain classes
 	| add models for domains
 
-13) Add dependencies to Repository-layer
+13) Add dependencies to Repository/dao-layer
 	| mysql-connector-java
 	| spring-boot-starter-data-jpa
 	| add model-layer
@@ -137,12 +137,29 @@ Creating Maven Project:
 20) Link web/controller layer to all layers
 	| modify web/controller build path - add parent POM to build path
 
+Sign-Up Form:
+====================================================================
 21) Create HTML page & add Model for forms in controller
-	| add form
-		| add Model
+	| add html form
+	| add model to controller
+	| add Model to form
+	| add url RequestMappings to controller
+	| 
 22) Create Service interfaces and implementations
 	| Add methods for transactional implementations
 	| Add methods to retrieve/authenticate for validation
+23) Add dao implementations
+	| Role extend CrudRepository<Role, Integer>
+24) Add annotations to domain model classes
+	| extends UserDetails
+	| @Entity
+	| @Id
+	| @GeneratedValue (strategy = GenerationType.AUTO
+	| @Column(name = " ", nullable = false, updatable = false)
+	| @OneToOne
+	| @OneToMany(mappedBy = " ", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	| @JsonIgnore
+	
 
 
 

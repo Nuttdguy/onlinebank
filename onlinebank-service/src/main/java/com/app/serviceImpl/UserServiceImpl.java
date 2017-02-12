@@ -1,13 +1,20 @@
 package com.app.serviceImpl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.app.onlinebank.domain.User;
-import com.app.onlinebank.domain.role.UserRole;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.dao.RoleDao;
+import com.app.domain.User;
+import com.app.domain.role.UserRole;
 import com.app.service.UserService;
 
 public class UserServiceImpl implements UserService {
+	
+	@Autowired
+	RoleDao roleDao;
 
 	@Override
 	public User findByUsername(String username) {
@@ -51,9 +58,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(User user, Set<UserRole> userRoles) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createUser(User user) {
+		Set<UserRole> userRoles = new HashSet<>();
+		userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));	
 	}
 
 	@Override

@@ -6,4 +6,16 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>onlinebank-dao</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework.data</groupId>
+  		<artifactId>spring-data-commons</artifactId>
+  		<version>1.12.6.RELEASE</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.app</groupId>
+  		<artifactId>onlinebank-model</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

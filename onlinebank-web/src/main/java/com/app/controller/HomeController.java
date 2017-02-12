@@ -1,7 +1,5 @@
 package com.app.controller;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.app.onlinebank.domain.User;
-import com.app.onlinebank.domain.role.UserRole;
+import com.app.domain.User;
 import com.app.service.UserService;
 
 @Controller
@@ -19,6 +16,8 @@ public class HomeController {
 
 	@Autowired
 	UserService userService;
+	
+	
 
 	@RequestMapping(value = "/")
 	public String home() {
@@ -50,11 +49,8 @@ public class HomeController {
 				model.addAttribute("usernameExists", true);
 			}
 			return "signup";
-		} else {
-			Set<UserRole> userRoles = new HashSet<>();
-			userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));
-			
-			userService.createUser(user, userRoles);
+		} else {			
+			userService.createUser(user);
 			return "redirect:/";
 		}
 
