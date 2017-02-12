@@ -137,7 +137,12 @@ Creating Maven Project:
 20) Link web/controller layer to all layers
 	| modify web/controller build path - add parent POM to build path
 
-
+21) Create HTML page & add Model for forms in controller
+	| add form
+		| add Model
+22) Create Service interfaces and implementations
+	| Add methods for transactional implementations
+	| Add methods to retrieve/authenticate for validation
 
 
 
