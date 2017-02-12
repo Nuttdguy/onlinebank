@@ -17,7 +17,7 @@
 
 	<modules>
 		<module>onlinebank-ui</module>
-		<module>onlinebank-repository</module>
+		<module>onlinebank-dao</module>
 		<module>onlinebank-model</module>
 		<module>onlinebank-service</module>
 		<module>onlinebank-web</module>

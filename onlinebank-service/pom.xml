@@ -8,11 +8,6 @@
   <artifactId>onlinebank-service</artifactId>
   <dependencies>
   	<dependency>
-  		<groupId>com.app</groupId>
-  		<artifactId>onlinebank-repository</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
   		<groupId>org.springframework.boot</groupId>
   		<artifactId>spring-boot-starter-security</artifactId>
   		<version>1.4.3.RELEASE</version>
@@ -30,6 +25,11 @@
   	<dependency>
   		<groupId>com.app</groupId>
   		<artifactId>onlinebank-business</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.app</groupId>
+  		<artifactId>onlinebank-dao</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>

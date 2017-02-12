@@ -14,12 +14,12 @@
   	</dependency>
   	<dependency>
   		<groupId>com.app</groupId>
-  		<artifactId>onlinebank-repository</artifactId>
+  		<artifactId>onlinebank-model</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   	<dependency>
   		<groupId>com.app</groupId>
-  		<artifactId>onlinebank-model</artifactId>
+  		<artifactId>onlinebank-dao</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
