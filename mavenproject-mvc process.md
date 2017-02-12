@@ -135,7 +135,7 @@ Creating Maven Project:
 	| Grant all privileges on *.* to 'newuser'@'localhost';
 	| Flush privileges;
 20) Link web/controller layer to all layers
-	| modify web/controller build path - add primary POM to build path
+	| modify web/controller build path - add parent POM to build path
 
 
 
