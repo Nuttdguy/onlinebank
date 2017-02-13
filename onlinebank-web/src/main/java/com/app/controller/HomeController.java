@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.app.domain.User;
+import com.app.factory.UserFactory;
 import com.app.service.UserService;
 
 @Controller
 public class HomeController {
-
+	
+	@Autowired
+	private UserFactory userFactory;
+	
 	@Autowired
 	private UserService userService;
 
@@ -28,10 +32,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
-
-		// get user object for sign-up form
-		User user = userService.getNewUser();
-		model.addAttribute("user", user);
+		model.addAttribute("user", userFactory.createUser() );
 		return "signup";
 	}
 

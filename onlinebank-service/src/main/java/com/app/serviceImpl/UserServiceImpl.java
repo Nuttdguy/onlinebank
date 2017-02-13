@@ -9,16 +9,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.dao.RoleDao;
 import com.app.dao.UserDao;
 import com.app.domain.User;
+import com.app.domain.role.UserRole;
 import com.app.service.UserService;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 	
-//	@Autowired
-//	private RoleDao roleDao;
+	@Autowired
+	private RoleDao roleDao;
 	
 	@Autowired
 	private UserDao userDao;
@@ -30,14 +32,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void createUser(User user) {
-//		Set<UserRole> userRoles = new HashSet<>();
-//		userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));	
+		Set<UserRole> userRoles = new HashSet<>();
+		userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));	
 	}
 	
-	@Override
-	public void save(User user) {	
-		userDao.save(user);
-	}
+//	@Override
+//	public void save(User user) {	
+//		userDao.save(user);
+//	}
 	
 	@Override
 	public User findByUsername(String username) { 
@@ -73,21 +75,21 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
-	@Override
-	public User saveUser(User user) {	
-		return userDao.save(user);
-	}
+//	@Override
+//	public User saveUser(User user) {	
+//		return userDao.save(user);
+//	}
 
-	@Override
-	public List<User> findUserList() {
-		return (List<User>) userDao.findAll();
-	}
+//	@Override
+//	public List<User> findUserList() {
+//		return (List<User>) userDao.findAll();
+//	}
 
 	@Override
 	public void enableUser(String username) {	
 		User user = findByUsername(username);
 		user.setEnabled(true);
-		userDao.save(user);
+//		userDao.save(user);
 	}
 
 	@Override
@@ -95,8 +97,20 @@ public class UserServiceImpl implements UserService {
 		User user =  findByUsername(username);
 		user.setEnabled(false);
 		System.out.println(user.isEnabled());
-		userDao.save(user);
+//		userDao.save(user);
 		System.out.println(username + " is disabled.");
+	}
+
+	@Override
+	public User saveUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
