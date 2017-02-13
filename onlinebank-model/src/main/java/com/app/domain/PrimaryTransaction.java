@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -41,7 +42,7 @@ public class PrimaryTransaction {
 	private BigDecimal availableBalance;
 
 	@ManyToOne
-	@JoinTable(name = "primary_account_id")
+	@JoinColumn(name = "primary_account_id")
 	private PrimaryAccount primaryAccount;
 
 	public Long getId() {

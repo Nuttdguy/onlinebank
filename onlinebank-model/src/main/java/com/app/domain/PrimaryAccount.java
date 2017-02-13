@@ -20,19 +20,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class PrimaryAccount {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "primary_account_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "primary_account_id", nullable = false, updatable = false)
 	private Long id;
-	
+
 	@Column(name = "account_number")
 	private int accountNumber;
-	
+
 	@Column(name = "account_balance")
-    private BigDecimal accountBalance;
-        
-    @OneToMany ( mappedBy = "primary_account", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
-    @JsonIgnore
-    private List<PrimaryTransaction> primaryTransactions;
+	private BigDecimal accountBalance;
+
+	// maps by class-name, not table-name
+	@OneToMany(mappedBy = "primaryAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<PrimaryTransaction> primaryTransactions;
 
 	public Long getId() {
 		return id;
@@ -65,5 +66,5 @@ public class PrimaryAccount {
 	public void setPrimaryTransactions(List<PrimaryTransaction> primaryTransactions) {
 		this.primaryTransactions = primaryTransactions;
 	}
-	
+
 }

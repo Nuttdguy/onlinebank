@@ -24,7 +24,7 @@ import com.app.domain.role.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_table")
 public class User implements UserDetails {
 	
 	private static final long serialVersionUID = 1770572064258133985L;

@@ -16,9 +16,6 @@ public class HomeController {
 	
 	@Autowired
 	private UserFactory userFactory;
-	
-	@Autowired
-	private UserService userService;
 
 	@RequestMapping(value = "/")
 	public String home() {
@@ -38,22 +35,29 @@ public class HomeController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signupPost(@ModelAttribute("user") User user, Model model) {
+		boolean isEmailExist = userFactory.checkEmailExists(user);
+		boolean isUsernameExist = userFactory.checkUsernameExists(user);
 
-		if (userService.checkUserExists(user.getUsername(), user.getEmail())) {
-
-			if (userService.checkEmailExists(user.getEmail()))
-				model.addAttribute("emailExists", true);
-			if (userService.checkUsernameExists(user.getUsername())) {
-				model.addAttribute("usernameExists", true);
-			}
-			return "signup";
-		} else {
-			
-//			userService.createUser(user);
-			userService.save(user);
-			return "redirect:/";
-		}
+		model.addAttribute("emailExists", isEmailExist);
+		model.addAttribute("usernameExists", isUsernameExist);
+		
+		return (isEmailExist || isUsernameExist) == true ? "signup" : "redirect:/";
 
 	}
 
 }
+
+//if (userService.checkUserExists(user.getUsername(), user.getEmail())) {
+//
+//	if (userService.checkEmailExists(user.getEmail()))
+//		model.addAttribute("emailExists", true);
+//	if (userService.checkUsernameExists(user.getUsername())) {
+//		model.addAttribute("usernameExists", true);
+//	}
+//	return "signup";
+//} else {
+//	
+////	userService.createUser(user);
+//	userService.save(user);
+//	return "redirect:/";
+//}
