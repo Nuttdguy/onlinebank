@@ -1,6 +1,5 @@
 package com.app.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +14,7 @@ import com.app.service.UserService;
 public class HomeController {
 
 	@Autowired
-	UserService userService;
-	
-	
+	private UserService userService;
 
 	@RequestMapping(value = "/")
 	public String home() {
@@ -49,8 +46,10 @@ public class HomeController {
 				model.addAttribute("usernameExists", true);
 			}
 			return "signup";
-		} else {			
-			userService.createUser(user);
+		} else {
+			
+//			userService.createUser(user);
+			userService.save(user);
 			return "redirect:/";
 		}
 
