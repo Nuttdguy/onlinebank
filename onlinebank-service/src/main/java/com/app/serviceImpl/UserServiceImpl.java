@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.dao.UserDao;
 import com.app.domain.User;
-import com.app.repository.UserRepository;
 import com.app.service.UserService;
 
 @Service
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserDao userDao;
 	
 	public void createUser(User user) {
 //		Set<UserRole> userRoles = new HashSet<>();
@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public User findByUsername(String username) { 
-		return userRepository.findByUsername(username);
+		return userDao.findByUsername(username);
 	}
 
 	public User findByEmail(String email) { 
-		return userRepository.findByEmail(email);
+		return userDao.findByEmail(email);
 	}
 
 	public boolean checkUserExists(String username, String email) {
@@ -54,24 +54,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void saveUser(User user) {	
-		userRepository.save(user);
+		userDao.save(user);
 	}
 
-	public List<User> findUserList() {
-		return (List<User>) userRepository.findAll();
-	}
+//	public List<User> findUserList() {
+//		return (List<User>) userDao.findAll();
+//	}
 
 	public void enableUser(String username) {	
 		User user = findByUsername(username);
 		user.setEnabled(true);
-		userRepository.save(user);
+		userDao.save(user);
 	}
 
 	public void disableUser(String username) {	
 		User user =  findByUsername(username);
 		user.setEnabled(false);
 		System.out.println(user.isEnabled());
-		userRepository.save(user);
+		userDao.save(user);
 		System.out.println(username + " is disabled.");
 	}
 

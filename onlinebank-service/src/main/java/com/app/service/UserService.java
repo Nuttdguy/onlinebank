@@ -22,7 +22,7 @@ public interface UserService {
 	
 	void saveUser(User user);
 	
-	List<User> findUserList();
+//	List<User> findUserList();
 	
 	void enableUser(String username);
 	
