@@ -35,6 +35,16 @@ public class Appointment {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	public Appointment() {
+	}
+
+	public Appointment(Date appointmentDate, String location, String description, boolean confirmed) {
+		this.appointmentDate = appointmentDate;
+		this.location = location;
+		this.description = description;
+		this.confirmed = confirmed;
+	}
 
 	public Long getId() {
 		return id;

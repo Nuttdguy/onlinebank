@@ -35,6 +35,15 @@ public class PrimaryAccount {
 	@JsonIgnore
 	private List<PrimaryTransaction> primaryTransactions;
 
+	public PrimaryAccount() {
+	}
+
+	public PrimaryAccount(int accountNumber, BigDecimal accountBalance, List<PrimaryTransaction> primaryTransactions) {
+		this.accountNumber = accountNumber;
+		this.accountBalance = accountBalance;
+		this.primaryTransactions = primaryTransactions;
+	}
+
 	public Long getId() {
 		return id;
 	}

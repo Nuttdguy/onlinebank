@@ -44,6 +44,19 @@ public class PrimaryTransaction {
 	@ManyToOne
 	@JoinColumn(name = "primary_account_id")
 	private PrimaryAccount primaryAccount;
+	
+	public PrimaryTransaction() {
+	}
+
+	public PrimaryTransaction(Date transactionDate, String description, String type, String status, double amount,
+			BigDecimal availableBalance) {
+		this.transactionDate = transactionDate;
+		this.description = description;
+		this.type = type;
+		this.status = status;
+		this.amount = amount;
+		this.availableBalance = availableBalance;
+	}
 
 	public Long getId() {
 		return id;

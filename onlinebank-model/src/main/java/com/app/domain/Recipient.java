@@ -16,29 +16,49 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Recipient {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "recipient_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "recipient_id", nullable = false, updatable = false)
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "phone")
 	private String phone;
-	
+
 	@Column(name = "account_number")
 	private String accountNumber;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@ManyToOne
-	@JoinColumn( name = "user_id" )
+	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
+
+	public Recipient() {
+	}
+	
+	public Recipient(String name, String email, String phone, String accountNumber, String description) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.accountNumber = accountNumber;
+		this.description = description;
+	}
+
+	public Recipient(String name, String email, String phone, String accountNumber, String description, User user) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.accountNumber = accountNumber;
+		this.description = description;
+		this.user = user;
+	}
 
 	public Long getId() {
 		return id;
@@ -95,7 +115,5 @@ public class Recipient {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
+
 }

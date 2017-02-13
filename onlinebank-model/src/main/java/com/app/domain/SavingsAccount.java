@@ -32,6 +32,16 @@ public class SavingsAccount {
 	@OneToMany(mappedBy = "savingsAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<SavingsTransaction> savingsTransactionList;
 
+	public SavingsAccount() {
+	}
+
+	public SavingsAccount(int savingsAccountNumber, BigDecimal accountBalance,
+			List<SavingsTransaction> savingsTransactionList) {
+		this.savingsAccountNumber = savingsAccountNumber;
+		this.accountBalance = accountBalance;
+		this.savingsTransactionList = savingsTransactionList;
+	}
+
 	public Long getId() {
 		return id;
 	}

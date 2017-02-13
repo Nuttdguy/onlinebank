@@ -26,29 +26,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "user_table")
 public class User implements UserDetails {
-	
+
 	private static final long serialVersionUID = 1770572064258133985L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long userId;
-	
+
 	@Column(name = "username")
 	private String username;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "firstname")
 	private String firstName;
-	
+
 	@Column(name = "lastname")
 	private String lastName;
 
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-	
+
 	@Column(name = "phone")
 	private String phone;
 
@@ -70,6 +70,37 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
+
+	public User() {
+	}
+
+	public User(String username, String password, String firstName, String lastName, String email, String phone,
+			boolean enabled) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.enabled = enabled;
+	}
+
+	public User(String username, String password, String firstName, String lastName, String email, String phone,
+			boolean enabled, PrimaryAccount primaryAccount, SavingsAccount savingsAccount,
+			List<Appointment> appointmentList, List<Recipient> recipientList, Set<UserRole> userRoles) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
+		this.enabled = enabled;
+		this.primaryAccount = primaryAccount;
+		this.savingsAccount = savingsAccount;
+		this.appointmentList = appointmentList;
+		this.recipientList = recipientList;
+		this.userRoles = userRoles;
+	}
 
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
@@ -181,7 +212,7 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> authorities = new HashSet<>();
-		userRoles.forEach(ur -> authorities.add(new Authority( ur.getRole().getName() )));
+		userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
 		return authorities;
 	}
 
