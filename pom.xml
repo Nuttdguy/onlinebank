@@ -21,7 +21,8 @@
 		<module>onlinebank-model</module>
 		<module>onlinebank-service</module>
 		<module>onlinebank-web</module>
-		<module>onlinebank-business</module>	
+		<module>onlinebank-business</module>
+		<module>onlinebank-respository</module>
 	</modules>
 
 	<build>
