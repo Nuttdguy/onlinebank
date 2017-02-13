@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.app.domain.User;
 import com.app.factory.UserFactory;
-import com.app.service.UserService;
 
 @Controller
 public class HomeController {
@@ -41,7 +40,12 @@ public class HomeController {
 		model.addAttribute("emailExists", isEmailExist);
 		model.addAttribute("usernameExists", isUsernameExist);
 		
-		return (isEmailExist || isUsernameExist) == true ? "signup" : "redirect:/";
+		if (isEmailExist || isUsernameExist) {
+			return "signup";
+		} else { 
+			userFactory.saveUser(user);
+			return "redirect:/";
+		}
 
 	}
 

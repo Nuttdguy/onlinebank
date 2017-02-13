@@ -27,10 +27,5 @@
   		<artifactId>onlinebank-business</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
-  	<dependency>
-  		<groupId>com.app</groupId>
-  		<artifactId>onlinebank-dao</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
   </dependencies>
 </project>

@@ -17,16 +17,12 @@ public interface UserService {
 	boolean checkUsernameExists(String username);
 	
 	boolean checkEmailExists(String email);
-	
-	void save(User user);
-	
-	User getNewUser();
-	
+
 	void createUser(User user);
 	
-	User saveUser(User user);
+	void saveUser(User user);
 	
-//	List<User> findUserList();
+	List<User> findUserList();
 	
 	void enableUser(String username);
 	

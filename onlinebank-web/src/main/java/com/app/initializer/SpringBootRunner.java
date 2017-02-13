@@ -13,10 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class SpringBootRunner {
 	
 	public static void main(String[] args) {
-//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean-datasource.xml");	
 		SpringApplication.run(SpringBootRunner.class, args);
-		
-//		((ConfigurableApplicationContext) applicationContext).close();
 	}
 
 }
