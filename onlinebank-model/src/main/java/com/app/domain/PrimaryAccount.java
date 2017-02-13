@@ -11,17 +11,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "primary_account")
 public class PrimaryAccount {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
 	@Column( name = "primary_account_id", nullable = false, updatable = false)
 	private Long id;
+	
+	@Column(name = "account_number")
 	private int accountNumber;
+	
+	@Column(name = "account_balance")
     private BigDecimal accountBalance;
         
     @OneToMany ( mappedBy = "primary_account", cascade = CascadeType.ALL, fetch = FetchType.LAZY )

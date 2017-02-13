@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +24,7 @@ import com.app.domain.role.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "user")
 public class User implements UserDetails {
 	
 	private static final long serialVersionUID = 1770572064258133985L;
@@ -31,15 +33,26 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id", nullable = false, updatable = false)
 	private Long userId;
+	
+	@Column(name = "username")
 	private String username;
+	
+	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "firstname")
 	private String firstName;
+	
+	@Column(name = "lastname")
 	private String lastName;
 
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
+	
+	@Column(name = "phone")
 	private String phone;
 
+	@Column(name = "enabled")
 	private boolean enabled = true;
 
 	@OneToOne

@@ -12,16 +12,27 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "recipient")
 public class Recipient {
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
 	@Column( name = "recipient_id", nullable = false, updatable = false)
 	private Long id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "phone")
 	private String phone;
+	
+	@Column(name = "account_number")
 	private String accountNumber;
+	
+	@Column(name = "description")
 	private String description;
 	
 	@ManyToOne

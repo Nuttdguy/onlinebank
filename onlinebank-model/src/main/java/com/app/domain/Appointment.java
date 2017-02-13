@@ -9,21 +9,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "appointment")
 public class Appointment {
-	
+
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "appointment_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "appointment_id", nullable = false, updatable = false)
 	private Long id;
-	private Date date;
+
+	@Column(name = "appointment_date")
+	private Date appointmentDate;
+
+	@Column(name = "location")
 	private String location;
+
+	@Column(name = "description")
 	private String description;
+
+	@Column(name = "confirmed")
 	private boolean confirmed;
-	
+
 	@ManyToOne
-	@JoinColumn( name = "user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	public Long getId() {
@@ -34,12 +44,12 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getAppointmentDate() {
+		return appointmentDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
 	}
 
 	public String getLocation() {
@@ -73,5 +83,5 @@ public class Appointment {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 }

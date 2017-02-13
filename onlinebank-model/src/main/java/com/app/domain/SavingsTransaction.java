@@ -10,23 +10,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "savings_transaction")
 public class SavingsTransaction {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "savings_transaction_Id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "savings_transaction_Id", nullable = false, updatable = false)
 	private Long id;
-	private Date date;
+
+	@Column(name = "transaction_date")
+	private Date transactionDate;
+
+	@Column(name = "description")
 	private String description;
+
+	@Column(name = "type")
 	private String type;
+
+	@Column(name = "status")
 	private String status;
+
+	@Column(name = "amount")
 	private double amount;
+
+	@Column(name = "available_balance")
 	private BigDecimal availableBalance;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "savings_account_id" )
+	@JoinColumn(name = "savings_account_id")
 	private SavingsAccount savingsAccount;
 
 	public Long getId() {
@@ -37,12 +51,12 @@ public class SavingsTransaction {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 
 	public String getDescription() {
@@ -92,6 +106,5 @@ public class SavingsTransaction {
 	public void setSavingsAccount(SavingsAccount savingsAccount) {
 		this.savingsAccount = savingsAccount;
 	}
-	
-	
+
 }

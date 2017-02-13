@@ -11,23 +11,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "primary_transaction")
 public class PrimaryTransaction {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "primary_transaction_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "primary_transaction_id", nullable = false, updatable = false)
 	private Long id;
-	private Date date;
+
+	@Column(name = "transaction_date")
+	private Date transactionDate;
+
+	@Column(name = "description")
 	private String description;
+
+	@Column(name = "type")
 	private String type;
+
+	@Column(name = "status")
 	private String status;
+
+	@Column(name = "amount")
 	private double amount;
+
+	@Column(name = "available_balance")
 	private BigDecimal availableBalance;
-	
+
 	@ManyToOne
-	@JoinTable( name = "primary_account_id")
+	@JoinTable(name = "primary_account_id")
 	private PrimaryAccount primaryAccount;
 
 	public Long getId() {
@@ -38,12 +52,12 @@ public class PrimaryTransaction {
 		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
 	}
 
 	public String getDescription() {
@@ -93,5 +107,5 @@ public class PrimaryTransaction {
 	public void setPrimaryAccount(PrimaryAccount primaryAccount) {
 		this.primaryAccount = primaryAccount;
 	}
-		
+
 }

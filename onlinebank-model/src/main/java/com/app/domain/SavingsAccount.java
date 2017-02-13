@@ -11,18 +11,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "savings_account")
 public class SavingsAccount {
 
 	@Id
-	@GeneratedValue( strategy = GenerationType.AUTO)
-	@Column( name = "savings_account_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "savings_account_id", nullable = false, updatable = false)
 	private Long id;
-	private int accountNumber;
+
+	@Column(name = "savings_account_number")
+	private int savingsAccountNumber;
+
+	@Column(name = "account_balance")
 	private BigDecimal accountBalance;
-	
-	@OneToMany( mappedBy = "savingsAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "savings_account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<SavingsTransaction> savingsTransactionList;
 
 	public Long getId() {
@@ -33,12 +39,12 @@ public class SavingsAccount {
 		this.id = id;
 	}
 
-	public int getAccountNumber() {
-		return accountNumber;
+	public int getSavingsAccountNumber() {
+		return savingsAccountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
+	public void setSavingsAccountNumber(int savingsAccountNumber) {
+		this.savingsAccountNumber = savingsAccountNumber;
 	}
 
 	public BigDecimal getAccountBalance() {
@@ -56,5 +62,5 @@ public class SavingsAccount {
 	public void setSavingsTransactionList(List<SavingsTransaction> savingsTransactionList) {
 		this.savingsTransactionList = savingsTransactionList;
 	}
-		
+
 }
