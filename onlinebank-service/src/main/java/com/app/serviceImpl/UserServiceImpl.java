@@ -1,42 +1,35 @@
 package com.app.serviceImpl;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.dao.RoleDao;
-import com.app.dao.UserDao;
 import com.app.domain.User;
-import com.app.domain.role.UserRole;
+import com.app.repository.UserRepository;
 import com.app.service.UserService;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 	
+
 	@Autowired
-	private RoleDao roleDao;
-	
-	@Autowired
-	private UserDao userDao;
-	
+	private UserRepository userRepository;
 	
 	public void createUser(User user) {
-		Set<UserRole> userRoles = new HashSet<>();
-		userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));	
+//		Set<UserRole> userRoles = new HashSet<>();
+//		userRoles.add(new UserRole(user, roleDao.findByName("ROLE_USER")));	
 	}
 	
 	public User findByUsername(String username) { 
-		return userDao.findByUsername(username);
+		return userRepository.findByUsername(username);
 	}
 
 	public User findByEmail(String email) { 
-		return userDao.findByEmail(email);
+		return userRepository.findByEmail(email);
 	}
 
 	public boolean checkUserExists(String username, String email) {
@@ -61,24 +54,24 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void saveUser(User user) {	
-		userDao.save(user);
+		userRepository.save(user);
 	}
 
 	public List<User> findUserList() {
-		return (List<User>) userDao.findAll();
+		return (List<User>) userRepository.findAll();
 	}
 
 	public void enableUser(String username) {	
 		User user = findByUsername(username);
 		user.setEnabled(true);
-		userDao.save(user);
+		userRepository.save(user);
 	}
 
 	public void disableUser(String username) {	
 		User user =  findByUsername(username);
 		user.setEnabled(false);
 		System.out.println(user.isEnabled());
-		userDao.save(user);
+		userRepository.save(user);
 		System.out.println(username + " is disabled.");
 	}
 
