@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,9 +31,9 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1770572064258133985L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id", nullable = false, updatable = false)
-	private Long userId;
+	private Long id;
 
 	@Column(name = "username")
 	private String username;
@@ -55,19 +56,22 @@ public class User implements UserDetails {
 	@Column(name = "enabled")
 	private boolean enabled = true;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private PrimaryAccount primaryAccount;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private SavingsAccount savingsAccount;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Transient
 	private List<Appointment> appointmentList;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@Transient
 	private List<Recipient> recipientList;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Transient
 	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
 
@@ -107,11 +111,11 @@ public class User implements UserDetails {
 	}
 
 	public Long getUserId() {
-		return userId;
+		return id;
 	}
 
 	public void setUserId(Long userId) {
-		this.userId = userId;
+		this.id = userId;
 	}
 
 	public String getUsername() {
@@ -204,7 +208,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String toString() {
-		return userId + " - " + username + " - " + password + " - " + firstName + " - " + lastName + " - " + email
+		return id + " - " + username + " - " + password + " - " + firstName + " - " + lastName + " - " + email
 				+ " - " + phone + " - " + enabled + " - " + primaryAccount + " - " + savingsAccount + " - "
 				+ appointmentList + " - " + recipientList + " - " + userRoles;
 	}

@@ -37,7 +37,7 @@ public class UserFactory {
 	}
 	
 	public void saveUser(User user) {
-		userService.saveUser(user);
+		userService.createUser(user);
 	}
 	
 }

@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class SavingsAccount {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "savings_account_id", nullable = false, updatable = false)
 	private Long id;
 
