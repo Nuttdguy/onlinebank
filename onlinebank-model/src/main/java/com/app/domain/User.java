@@ -1,5 +1,6 @@
 package com.app.domain;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -56,10 +57,10 @@ public class User implements UserDetails {
 	@Column(name = "enabled")
 	private boolean enabled = true;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private PrimaryAccount primaryAccount;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private SavingsAccount savingsAccount;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -76,10 +77,12 @@ public class User implements UserDetails {
 	private Set<UserRole> userRoles = new HashSet<>();
 
 	public User() {
+		this.primaryAccount = new PrimaryAccount( BigDecimal.valueOf(10.00) );
+		this.savingsAccount = new SavingsAccount( BigDecimal.valueOf(1.00) );
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email, String phone,
-			boolean enabled) {
+			boolean enabled, PrimaryAccount primaryAccount, SavingsAccount savingsAccount) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -87,6 +90,8 @@ public class User implements UserDetails {
 		this.email = email;
 		this.phone = phone;
 		this.enabled = enabled;
+		this.primaryAccount = new PrimaryAccount( BigDecimal.valueOf(10.00) );
+		this.savingsAccount = new SavingsAccount( BigDecimal.valueOf(1.00) );
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email, String phone,
@@ -208,9 +213,9 @@ public class User implements UserDetails {
 
 	@Override
 	public String toString() {
-		return id + " - " + username + " - " + password + " - " + firstName + " - " + lastName + " - " + email
-				+ " - " + phone + " - " + enabled + " - " + primaryAccount + " - " + savingsAccount + " - "
-				+ appointmentList + " - " + recipientList + " - " + userRoles;
+		return id + " - " + username + " - " + password + " - " + firstName + " - " + lastName + " - " + email + " - "
+				+ phone + " - " + enabled + " - " + primaryAccount + " - " + savingsAccount + " - " + appointmentList
+				+ " - " + recipientList + " - " + userRoles;
 	}
 
 	@Override

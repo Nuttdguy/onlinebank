@@ -11,7 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,10 +29,14 @@ public class PrimaryAccount {
 	private Long id;
 
 	@Column(name = "account_number")
-	private int accountNumber;
+	private String accountNumber;
 
 	@Column(name = "account_balance")
 	private BigDecimal accountBalance;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private User user;
 
 	// maps by class-name, not table-name
 	@OneToMany(mappedBy = "primaryAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -38,7 +46,13 @@ public class PrimaryAccount {
 	public PrimaryAccount() {
 	}
 
-	public PrimaryAccount(int accountNumber, BigDecimal accountBalance, List<PrimaryTransaction> primaryTransactions) {
+	public PrimaryAccount(BigDecimal accountBalance) {
+		setAccountNumber();
+		setAccountBalance( accountBalance );
+	}
+
+	public PrimaryAccount(String accountNumber, BigDecimal accountBalance,
+			List<PrimaryTransaction> primaryTransactions) {
 		this.accountNumber = accountNumber;
 		this.accountBalance = accountBalance;
 		this.primaryTransactions = primaryTransactions;
@@ -52,19 +66,20 @@ public class PrimaryAccount {
 		this.id = id;
 	}
 
-	public int getAccountNumber() {
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
+	public void setAccountNumber() {
+		String acctNum = "P01000028321";
+		this.accountNumber = acctNum;
 	}
 
 	public BigDecimal getAccountBalance() {
 		return accountBalance;
 	}
 
-	public void setAccountBalance(BigDecimal accountBalance) {
+	public void setAccountBalance(BigDecimal accountBalance) {	
 		this.accountBalance = accountBalance;
 	}
 

@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -22,11 +24,15 @@ public class SavingsAccount {
 	@Column(name = "savings_account_id", nullable = false, updatable = false)
 	private Long id;
 
-	@Column(name = "savings_account_number")
-	private int savingsAccountNumber;
+	@Column(name = "account_number")
+	private String accountNumber;
 
 	@Column(name = "account_balance")
 	private BigDecimal accountBalance;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private User user;
 
 	// maps by class-name, not table-name
 	@OneToMany(mappedBy = "savingsAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -34,10 +40,15 @@ public class SavingsAccount {
 
 	public SavingsAccount() {
 	}
+	
+	public SavingsAccount( BigDecimal accountBalance ) {
+		setAccountNumber();
+		setAccountBalance( accountBalance );
+	}
 
-	public SavingsAccount(int savingsAccountNumber, BigDecimal accountBalance,
+	public SavingsAccount(String accountNumber, BigDecimal accountBalance,
 			List<SavingsTransaction> savingsTransactionList) {
-		this.savingsAccountNumber = savingsAccountNumber;
+		this.accountNumber = accountNumber;
 		this.accountBalance = accountBalance;
 		this.savingsTransactionList = savingsTransactionList;
 	}
@@ -50,12 +61,13 @@ public class SavingsAccount {
 		this.id = id;
 	}
 
-	public int getSavingsAccountNumber() {
-		return savingsAccountNumber;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 
-	public void setSavingsAccountNumber(int savingsAccountNumber) {
-		this.savingsAccountNumber = savingsAccountNumber;
+	public void setAccountNumber() {
+		String acctNum = "S01000090329";
+		this.accountNumber = acctNum;
 	}
 
 	public BigDecimal getAccountBalance() {
@@ -73,5 +85,5 @@ public class SavingsAccount {
 	public void setSavingsTransactionList(List<SavingsTransaction> savingsTransactionList) {
 		this.savingsTransactionList = savingsTransactionList;
 	}
-
+	
 }
