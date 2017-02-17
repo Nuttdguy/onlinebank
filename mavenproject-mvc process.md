@@ -149,16 +149,22 @@ Sign-Up Form:
 	| Add methods for transactional implementations
 	| Add methods to retrieve/authenticate for validation
 23) Add dao implementations
-	| Role extend CrudRepository<Role, Integer>
+	| User extend CrudRepository<Role, Integer>
 24) Add annotations to domain model classes
 	| extends UserDetails
 	| @Entity
+	| @Table
 	| @Id
 	| @GeneratedValue (strategy = GenerationType.AUTO
 	| @Column(name = " ", nullable = false, updatable = false)
-	| @OneToOne
+	| @OneToOne(mappedBy = "", cascade = CascadeType.ALL)
+	| @PrimaryKeyJoinColumn
 	| @OneToMany(mappedBy = " ", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	| @JsonIgnore
+	| @Transient
+
+Database/Hibernate Configuration
+=====================================================================
 	
 
 

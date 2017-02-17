@@ -20,20 +20,27 @@ public class UserFactory {
 		return new User();
 	}
 	
-	public boolean checkEmailExists(User user) {
-		if (null != userService.findByEmail( user.getEmail() )) {
+	public boolean checkUserExists(String username, String email) {
+		if ( checkUsernameExists(username) || checkEmailExists(email) )
 			return true;
-		} else {
+		else
 			return false;
-		}
 	}
 	
-	public boolean checkUsernameExists(User user) {
-		if (null != userService.findByUsername(user.getUsername() )) {
+	public boolean checkEmailExists(String email) {
+		if (null != userService.findByEmail( email )) {
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
+	}
+	
+	public boolean checkUsernameExists(String username) {
+		if (null != userService.findByUsername( username  )) {
+			return true;
+		}
+
+		return false;
 	}
 	
 	public void saveUser(User user) {

@@ -18,7 +18,7 @@ public class SavingsTransaction {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "savings_transaction_Id", nullable = false, updatable = false)
+	@Column(name = "transaction_Id", nullable = false, updatable = false)
 	private Long id;
 
 	@Column(name = "transaction_date")
@@ -40,7 +40,7 @@ public class SavingsTransaction {
 	private BigDecimal availableBalance;
 
 	@ManyToOne
-	@JoinColumn(name = "savings_account_id")
+	@JoinColumn(name = "savings_id")
 	private SavingsAccount savingsAccount;
 
 	public SavingsTransaction() {

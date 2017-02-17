@@ -90,8 +90,6 @@ public class User implements UserDetails {
 		this.email = email;
 		this.phone = phone;
 		this.enabled = enabled;
-		this.primaryAccount = new PrimaryAccount( BigDecimal.valueOf(10.00) );
-		this.savingsAccount = new SavingsAccount( BigDecimal.valueOf(1.00) );
 	}
 
 	public User(String username, String password, String firstName, String lastName, String email, String phone,

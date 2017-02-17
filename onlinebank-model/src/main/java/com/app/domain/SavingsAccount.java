@@ -21,7 +21,7 @@ public class SavingsAccount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "savings_account_id", nullable = false, updatable = false)
+	@Column(name = "savings_id", nullable = false, updatable = false)
 	private Long id;
 
 	@Column(name = "account_number")

@@ -34,18 +34,24 @@ public class HomeController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signupPost(@ModelAttribute("user") User user, Model model) {
-		boolean isEmailExist = userFactory.checkEmailExists(user);
-		boolean isUsernameExist = userFactory.checkUsernameExists(user);
-
-		model.addAttribute("emailExists", isEmailExist);
-		model.addAttribute("usernameExists", isUsernameExist);
+		String loadUrl = "";
 		
-		if (isEmailExist || isUsernameExist) {
-			return "signup";
-		} else { 
-			userFactory.saveUser(user);
-			return "redirect:/";
+		if (userFactory.checkUserExists(user.getUsername(), user.getEmail())) {
+		
+			if (userFactory.checkEmailExists( user.getEmail() ))
+				model.addAttribute("emailExists", true);
+			if (userFactory.checkUsernameExists( user.getUsername() ))
+				model.addAttribute("usernameExists", true);
+			loadUrl = "signup";			
+		} else {	
+			try {
+				userFactory.saveUser(user);
+				return "redirect:/";
+			} catch (Exception sqlex) {
+				loadUrl = "signup";
+			}
 		}
+		return loadUrl;
 
 	}
 
@@ -65,3 +71,31 @@ public class HomeController {
 //	userService.save(user);
 //	return "redirect:/";
 //}
+	
+	
+	
+	//		boolean isEmailExist = userFactory.checkEmailExists(user);
+//	boolean isUsernameExist = userFactory.checkUsernameExists(user);
+//	
+//	if ( isEmailExist || isUsernameExist ) {
+//		model.addAttribute("emailExists", isEmailExist);
+//		model.addAttribute("usernameExists", isUsernameExist);
+//		return "signup";
+//	} else { 
+//		userFactory.saveUser(user);
+//		return "redirect:/";
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="onlinebank-business"/>
+	<classpathentry kind="src" path="onlinebank-service"/>
+	<classpathentry kind="src" path="onlinebank-model"/>
+	<classpathentry kind="src" path="onlinebank-ui"/>
+	<classpathentry kind="src" path="onlinebank-web"/>
+	<classpathentry kind="src" path="onlinebank-respository"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
